@@ -52,4 +52,25 @@ public class BookTest {
         Book book = new Book(title, author, year);
         assertEquals("'Head First Java' by Kathy Sierra, Bert Bates, 2005", book.toString());
     }
+
+    @Test
+    public void newBookShouldBeAvailable() {
+        Book book = new Book("TDD By Example", "Kent Beck", 2000);
+        assertEquals(true, book.getAvailability());
+    }
+
+    @Test
+    public void bookShouldNotBeAvailableAfterCheckout() {
+        Book book = new Book("TDD By Example", "Kent Beck", 2000);
+        book.checkout();
+        assertEquals(false, book.getAvailability());
+    }
+
+    @Test
+    public void bookShouldBeAvailableAfterCheckin() {
+        Book book = new Book("TDD By Example", "Kent Beck", 2000);
+        book.checkout();
+        book.checkin();
+        assertEquals(true, book.getAvailability());
+    }
 }
