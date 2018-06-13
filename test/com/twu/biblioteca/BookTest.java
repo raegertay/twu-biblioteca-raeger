@@ -1,7 +1,5 @@
 package com.twu.biblioteca;
 
-
-import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertArrayEquals;
@@ -56,14 +54,14 @@ public class BookTest {
     @Test
     public void newBookShouldBeAvailable() {
         Book book = new Book("TDD By Example", "Kent Beck", 2000);
-        assertEquals(true, book.getAvailability());
+        assertEquals(true, book.isAvailable());
     }
 
     @Test
     public void bookShouldNotBeAvailableAfterCheckout() {
         Book book = new Book("TDD By Example", "Kent Beck", 2000);
         book.checkout();
-        assertEquals(false, book.getAvailability());
+        assertEquals(false, book.isAvailable());
     }
 
     @Test
@@ -71,6 +69,13 @@ public class BookTest {
         Book book = new Book("TDD By Example", "Kent Beck", 2000);
         book.checkout();
         book.checkin();
-        assertEquals(true, book.getAvailability());
+        assertEquals(true, book.isAvailable());
+    }
+
+    @Test
+    public void booksWithSameTitleAuthorAndYearShouldBeEqual() {
+        Book book1 = new Book("TDD By Example", "Kent Beck", 2000);
+        Book book2 = new Book("TDD By Example", "Kent Beck", 2000);
+        assertEquals(book1.hashCode(), book2.hashCode());
     }
 }

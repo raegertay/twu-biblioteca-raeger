@@ -3,7 +3,7 @@ package com.twu.biblioteca;
 abstract public class Borrowable {
     private boolean availability = true;
 
-    public boolean getAvailability() {
+    public boolean isAvailable() {
         return availability;
     }
 
