@@ -51,4 +51,36 @@ public class LibraryTest {
         Library library = new Library(books);
         assertEquals(null, library.findBook("book4"));
     }
+
+    @Test
+    public void getAvailableMoviesShouldReturnAllAvailableMovies() {
+        Movie movie1 = new Movie("Movie1", 2001, "Director1", 1);
+        Movie movie2 = new Movie("Movie2", 2001, "Director2", 2);
+        Movie movie3 = new Movie("Movie3", 2001, "Director3", 3);
+        movie3.checkout();
+        HashSet<Movie> movies = new HashSet<>(Arrays.asList(movie1, movie2, movie3));
+        Library library = new Library(new HashSet<Book>(), movies);
+        assertEquals(new HashSet<Movie>(Arrays.asList(movie1, movie2)), library.getAvailableMovies());
+    }
+
+    @Test
+    public void getBorrowedMoviesShouldReturnAllBorrowedMovies() {
+        Movie movie1 = new Movie("Movie1", 2001, "Director1", 1);
+        Movie movie2 = new Movie("Movie2", 2001, "Director2", 2);
+        Movie movie3 = new Movie("Movie3", 2001, "Director3", 3);
+        movie3.checkout();
+        HashSet<Movie> movies = new HashSet<>(Arrays.asList(movie1, movie2, movie3));
+        Library library = new Library(new HashSet<Book>(), movies);
+        assertEquals(new HashSet<Movie>(Arrays.asList(movie3)), library.getBorrowedMovies());
+    }
+
+    @Test
+    public void findMovieShouldFindMovieGivenName() {
+        Movie movie1 = new Movie("Movie1", 2001, "Director1", 1);
+        Movie movie2 = new Movie("Movie2", 2001, "Director2", 2);
+        Movie movie3 = new Movie("Movie3", 2001, "Director3", 3);
+        HashSet<Movie> movies = new HashSet<>(Arrays.asList(movie1, movie2, movie3));
+        Library library = new Library(new HashSet<Book>(), movies);
+        assertEquals(movie3, library.findMovie("Movie3"));
+    }
 }
