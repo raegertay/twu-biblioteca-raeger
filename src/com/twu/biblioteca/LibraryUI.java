@@ -5,16 +5,32 @@ import java.util.Scanner;
 
 public class LibraryUI {
     private Library library;
-    private final String[] MENU_OPTIONS = { "List Books", "List Movies", "Borrowed Books", "Borrowed Movies", "Quit" };
+    private final String[] MENU_OPTIONS = { "List Books", "List Movies", "Borrowed Books", "Borrowed Movies", "My Information", "Quit" };
     private final Scanner scanner = new Scanner(System.in);
+    private Session session;
 
     public LibraryUI(Library library) {
         this.library = library;
+        session = new Session();
     }
 
     public void start() {
         printGreeting();
-        mainMenuPage();
+        loginPage();
+    }
+
+    private void loginPage() {
+        System.out.println("Please enter your library number: ");
+        String libraryNumber = scanner.nextLine();
+        System.out.println("Please enter your password: ");
+        String password = scanner.nextLine();
+        if (session.authenticateUser(library.getUsers(), libraryNumber, password)) {
+            System.out.println("Login successful!");
+            mainMenuPage();
+        } else {
+            System.out.println("Your library number and/or password is incorrect. Please try again.");
+            loginPage();
+        }
     }
 
     private void mainMenuPage() {
@@ -34,6 +50,8 @@ public class LibraryUI {
                 borrowedMoviesPage();
                 break;
             case 5:
+                userInfoPage();
+            case 6:
                 System.out.println("Goodbye!");
                 System.exit(0);
             default:
@@ -93,6 +111,14 @@ public class LibraryUI {
             mainMenuPage();
         }
     }
+
+    private void userInfoPage() {
+        System.out.println(session.getCurrentUser().toString());
+        System.out.println("Enter any key to go back: ");
+        scanner.nextLine();
+        mainMenuPage();
+    }
+
 
     private void printGreeting() {
         System.out.println("Welcome to Biblioteca!");

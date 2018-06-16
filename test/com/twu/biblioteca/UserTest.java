@@ -42,4 +42,9 @@ public class UserTest {
         User user2 = new User("000-0001", "abc123", "Alan", "alan@email.com", "98765432");
         assertEquals(user, user2);
     }
+
+    @Test
+    public void verifyPasswordShouldReturnTrueIfPasswordGivenIsCorrect() {
+        assertEquals(true, user.verifyPassword("abc123"));
+    }
 }

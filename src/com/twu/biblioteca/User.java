@@ -33,6 +33,10 @@ public class User {
         return phoneNumber;
     }
 
+    public boolean verifyPassword(String password) {
+        return this.password.equals(password);
+    }
+
     @Override
     public String toString() {
         return String.format("Library number: %s\nName: %s\nEmail: %s\nPhone Number: %s", libraryNumber, name, email, phoneNumber);

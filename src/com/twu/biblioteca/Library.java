@@ -6,20 +6,14 @@ import java.util.HashSet;
 import java.util.Scanner;
 
 public class Library {
+    private HashSet<User> users;
     private HashSet<Book> books;
     private HashSet<Movie> movies;
 
-    public Library(HashSet<Book> books, HashSet<Movie> movies) {
+    public Library(HashSet<User> users, HashSet<Book> books, HashSet<Movie> movies) {
+        this.users = users;
         this.books = books;
         this.movies = movies;
-    }
-
-    public Library(HashSet<Book> books) {
-        this(books, new HashSet<Movie>());
-    }
-
-    public Library() {
-        this(new HashSet<Book>(), new HashSet<Movie>());
     }
 
     public HashSet<Book> getAvailableBooks() {
@@ -79,5 +73,9 @@ public class Library {
             }
         }
         return null;
+    }
+
+    public HashSet<User> getUsers() {
+        return users;
     }
 }
