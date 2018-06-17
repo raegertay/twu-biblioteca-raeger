@@ -60,14 +60,14 @@ public class BookTest {
     @Test
     public void bookShouldNotBeAvailableAfterCheckout() {
         Book book = new Book("TDD By Example", "Kent Beck", 2000);
-        book.checkout();
+        book.checkout(null);
         assertEquals(false, book.isAvailable());
     }
 
     @Test
     public void bookShouldBeAvailableAfterCheckin() {
         Book book = new Book("TDD By Example", "Kent Beck", 2000);
-        book.checkout();
+        book.checkout(null);
         book.checkin();
         assertEquals(true, book.isAvailable());
     }
@@ -77,5 +77,22 @@ public class BookTest {
         Book book1 = new Book("TDD By Example", "Kent Beck", 2000);
         Book book2 = new Book("TDD By Example", "Kent Beck", 2000);
         assertEquals(book1.hashCode(), book2.hashCode());
+    }
+
+    @Test
+    public void getBorrowerShouldReturnTheUserAfterCheckout() {
+        Book book = new Book("TDD By Example", "Kent Beck", 2000);
+        User user = new User("000-0001", "abc123", "Tom", "tom@email.com", "91234567");
+        book.checkout(user);
+        assertEquals(user, book.getBorrower());
+    }
+
+    @Test
+    public void getBorrowerShouldReturnNullAfterCheckIn() {
+        Book book = new Book("TDD By Example", "Kent Beck", 2000);
+        User user = new User("000-0001", "abc123", "Tom", "tom@email.com", "91234567");
+        book.checkout(user);
+        book.checkin();
+        assertEquals(null, book.getBorrower());
     }
 }

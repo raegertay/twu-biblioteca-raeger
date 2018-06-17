@@ -67,7 +67,7 @@ public class LibraryUI {
             System.out.println("That book is not available.");
             bookListPage();
         } else {
-            book.checkout();
+            book.checkout(session.getCurrentUser());
             System.out.println("Thank you! Enjoy the book.");
             mainMenuPage();
         }
@@ -80,7 +80,7 @@ public class LibraryUI {
             System.out.println("That movie is not available.");
             movieListPage();
         } else {
-            movie.checkout();
+            movie.checkout(session.getCurrentUser());
             System.out.println("Thank you! Enjoy the movie.");
             mainMenuPage();
         }

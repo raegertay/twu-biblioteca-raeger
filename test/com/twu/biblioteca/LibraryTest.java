@@ -15,7 +15,7 @@ public class LibraryTest {
         Book book1 = new Book("book1", "author1", 2001);
         Book book2 = new Book("book2", "author2", 2002);
         Book book3 = new Book("book3", "author3", 2003);
-        book3.checkout();
+        book3.checkout(null);
         HashSet<Book> books = new HashSet<>(Arrays.asList(book1, book2, book3));
         Library library = new Library(new HashSet<User>(), books, new HashSet<Movie>());
         assertEquals(new HashSet<Book>(Arrays.asList(book1, book2)), library.getAvailableBooks());
@@ -26,7 +26,7 @@ public class LibraryTest {
         Book book1 = new Book("book1", "author1", 2001);
         Book book2 = new Book("book2", "author2", 2002);
         Book book3 = new Book("book3", "author3", 2003);
-        book3.checkout();
+        book3.checkout(null);
         HashSet<Book> books = new HashSet<>(Arrays.asList(book1, book2, book3));
         Library library = new Library(new HashSet<User>(), books, new HashSet<Movie>());
         assertEquals(new HashSet<Book>(Arrays.asList(book3)), library.getBorrowedBooks());
@@ -57,7 +57,7 @@ public class LibraryTest {
         Movie movie1 = new Movie("Movie1", 2001, "Director1", 1);
         Movie movie2 = new Movie("Movie2", 2001, "Director2", 2);
         Movie movie3 = new Movie("Movie3", 2001, "Director3", 3);
-        movie3.checkout();
+        movie3.checkout(null);
         HashSet<Movie> movies = new HashSet<>(Arrays.asList(movie1, movie2, movie3));
         Library library = new Library(new HashSet<User>(), new HashSet<Book>(), movies);
         assertEquals(new HashSet<Movie>(Arrays.asList(movie1, movie2)), library.getAvailableMovies());
@@ -68,7 +68,7 @@ public class LibraryTest {
         Movie movie1 = new Movie("Movie1", 2001, "Director1", 1);
         Movie movie2 = new Movie("Movie2", 2001, "Director2", 2);
         Movie movie3 = new Movie("Movie3", 2001, "Director3", 3);
-        movie3.checkout();
+        movie3.checkout(null);
         HashSet<Movie> movies = new HashSet<>(Arrays.asList(movie1, movie2, movie3));
         Library library = new Library(new HashSet<User>(), new HashSet<Book>(), movies);
         assertEquals(new HashSet<Movie>(Arrays.asList(movie3)), library.getBorrowedMovies());
